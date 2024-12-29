@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>my-family-chart</title>
+  <title>Family Tree</title>
   <script src="https://unpkg.com/d3@6"></script>
   <script type="module" src="https://unpkg.com/family-chart@0.2.1"></script>
   <link rel="stylesheet" href="https://unpkg.com/family-chart@0.2.1/dist/styles/family-chart.css">
@@ -30,7 +30,11 @@ function create(data) {
     store,
     svg,
     card_dim: {w:220,h:70,text_x:75,text_y:15,img_w:60,img_h:60,img_x:5,img_y:5},
-    card_display: [d => `${d.data["first name"]} ${d.data["last name"]}`],
+    card_display: [
+        d => `${d.data["first name"]} ${d.data["last name"]}`,
+        d => `Birthdate: ${d.data["birthday"]}`
+    ],
+
     mini_tree: true,
     link_break: false
   })
