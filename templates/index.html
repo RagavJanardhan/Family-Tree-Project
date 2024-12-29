@@ -1,21 +1,45 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Tree</title>
-    <style>
-        #familyTree {
-            width: 100%;
-            height: 600px;
-            border: 1px solid lightgray;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>my-family-chart</title>
+  <script src="https://unpkg.com/d3@6"></script>
+  <script type="module" src="https://unpkg.com/family-chart@0.2.1"></script>
+  <link rel="stylesheet" href="https://unpkg.com/family-chart@0.2.1/dist/styles/family-chart.css">
 </head>
 <body>
-    <h1>Family Tree</h1>
-    <div id="familyTree"></div>
-    <script src="https://unpkg.com/vis-network@9.0.4/dist/vis-network.min.js"></script>
-    <script src="../static/js/familyTree.js"></script>
+<div id="FamilyChart" class="f3" style="width:100%;height:900px;margin:auto;background-color:rgb(33,33,33);color:#fff;"></div>
+<script type="module">
+
+fetch('../family_tree.json')
+  .then(res => res.json())
+  .then(data => create(data))
+  .catch(err => console.error(err))
+
+function create(data) {
+  const cont = document.querySelector("#FamilyChart")
+  const store = f3.createStore({
+    data,
+    node_separation: 250,
+    level_separation: 150
+  })
+  const svg = f3.createSvg(cont)
+  const Card = f3.elements.Card({
+    store,
+    svg,
+    card_dim: {w:220,h:70,text_x:75,text_y:15,img_w:60,img_h:60,img_x:5,img_y:5},
+    card_display: [d => `${d.data["first name"]} ${d.data["last name"]}`],
+    mini_tree: true,
+    link_break: false
+  })
+
+  store.setOnUpdate(props => f3.view(store.getTree(), svg, Card, props || {}))
+  store.updateTree({initial: true})
+}
+
+</script>
+
 </body>
 </html>

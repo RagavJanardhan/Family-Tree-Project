@@ -1,0 +1,161 @@
+[
+  {
+    "id": "bd428834-0ea9-4b82-9c04-d76fe80dce45",
+    "data": {
+      "first name": "Ragav",
+      "last name": "Janardhan",
+      "birthday": "2005",
+      "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
+      "gender": "M"
+    },
+    "rels": {
+      "spouses": [],
+      "father": "a0bee553-3d3f-4a41-a28d-fbb5f707bac6",
+      "mother": "6767e064-8923-4b72-848f-f78421ac1965",
+      "children": []
+    }
+  },
+  {
+    "id": "1a6e256f-b736-49e2-a623-8134348a56c3",
+    "data": {
+      "first name": "Janani",
+      "last name": "Radhakrishnan",
+      "birthday": "2011",
+      "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
+      "gender": "M"
+    },
+    "rels": {
+      "spouses": [],
+      "father": "82dfe21f-6bf8-49df-8c1d-a21c05c290e1",
+      "mother": null,
+      "children": []
+    }
+  },
+  {
+    "id": "a0bee553-3d3f-4a41-a28d-fbb5f707bac6",
+    "data": {
+      "first name": "Jay",
+      "last name": "Janardhan",
+      "birthday": "1974",
+      "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
+      "gender": "M"
+    },
+    "rels": {
+      "spouses": [],
+      "father": "d6448753-8ee3-4ae9-8442-879f6f5d484d",
+      "mother": "f4cd4931-6aa7-487b-8b63-aa389f726d93",
+      "children": [
+        "bd428834-0ea9-4b82-9c04-d76fe80dce45",
+        "14c8e26e-1de8-4bfe-8547-cf5f47cc0766"
+      ]
+    }
+  },
+  {
+    "id": "6767e064-8923-4b72-848f-f78421ac1965",
+    "data": {
+      "first name": "Srilakshmi",
+      "last name": "Kalyanasamy",
+      "birthday": "1976",
+      "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
+      "gender": "M"
+    },
+    "rels": {
+      "spouses": [],
+      "father": null,
+      "mother": null,
+      "children": [
+        "bd428834-0ea9-4b82-9c04-d76fe80dce45",
+        "14c8e26e-1de8-4bfe-8547-cf5f47cc0766"
+      ]
+    }
+  },
+  {
+    "id": "14c8e26e-1de8-4bfe-8547-cf5f47cc0766",
+    "data": {
+      "first name": "Sanjay",
+      "last name": "Janardhan",
+      "birthday": "2003",
+      "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
+      "gender": "M"
+    },
+    "rels": {
+      "spouses": [],
+      "father": "a0bee553-3d3f-4a41-a28d-fbb5f707bac6",
+      "mother": "6767e064-8923-4b72-848f-f78421ac1965",
+      "children": []
+    }
+  },
+  {
+    "id": "efb4a04a-a2c7-4764-b797-55d91f35ff10",
+    "data": {
+      "first name": "Arjun",
+      "last name": "Radhakrishnan",
+      "birthday": "2016",
+      "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
+      "gender": "M"
+    },
+    "rels": {
+      "spouses": [],
+      "father": "82dfe21f-6bf8-49df-8c1d-a21c05c290e1",
+      "mother": null,
+      "children": []
+    }
+  },
+  {
+    "id": "d6448753-8ee3-4ae9-8442-879f6f5d484d",
+    "data": {
+      "first name": "Radha",
+      "last name": "Janardhan",
+      "birthday": "1954",
+      "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
+      "gender": "M"
+    },
+    "rels": {
+      "spouses": [],
+      "father": null,
+      "mother": null,
+      "children": [
+        "a0bee553-3d3f-4a41-a28d-fbb5f707bac6",
+        "82dfe21f-6bf8-49df-8c1d-a21c05c290e1"
+      ]
+    }
+  },
+  {
+    "id": "f4cd4931-6aa7-487b-8b63-aa389f726d93",
+    "data": {
+      "first name": "Janardhan",
+      "last name": "Janardhanan",
+      "birthday": "1942",
+      "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
+      "gender": "M"
+    },
+    "rels": {
+      "spouses": [],
+      "father": null,
+      "mother": null,
+      "children": [
+        "a0bee553-3d3f-4a41-a28d-fbb5f707bac6",
+        "82dfe21f-6bf8-49df-8c1d-a21c05c290e1"
+      ]
+    }
+  },
+  {
+    "id": "82dfe21f-6bf8-49df-8c1d-a21c05c290e1",
+    "data": {
+      "first name": "Jaishree",
+      "last name": "Janardhanan",
+      "birthday": "1981",
+      "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
+      "gender": "M"
+    },
+    "rels": {
+      "spouses": [],
+      "father": "d6448753-8ee3-4ae9-8442-879f6f5d484d",
+      "mother": "f4cd4931-6aa7-487b-8b63-aa389f726d93",
+      "children": [
+        "1a6e256f-b736-49e2-a623-8134348a56c3",
+        "efb4a04a-a2c7-4764-b797-55d91f35ff10"
+      ]
+    }
+  }
+]
