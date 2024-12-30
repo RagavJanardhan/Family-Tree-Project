@@ -1,201 +1,201 @@
 [
   {
-    "id": "da0a4e3e-2488-459e-809c-4103eefc58af",
+    "id": "ragav-janardhan",
     "data": {
       "first name": "Ragav",
       "last name": "Janardhan",
       "birthday": "2005-12-02",
-      "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
+      "avatar": "https://media.licdn.com/dms/image/v2/C4D03AQFYrYS4yVf1Mg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1643851825494?e=2147483647&v=beta&t=Ugq8Jf33WAuFKNc0Te5qiW9m1JgPfGH8U10dVmOOMjY",  
       "gender": "M",
-      "age": "19 years, 0 months, 27 days"
+      "death date": "Alive"
     },
     "rels": {
       "spouses": [],
-      "father": "5ee2ed22-9ff6-45c9-ba43-3f0ee8de60aa",
-      "mother": "03eee69b-6404-463d-8754-81395836241b",
+      "father": "jay-janardhan",
+      "mother": "srilakshmi-kalyanasamy",
       "children": []
     }
   },
   {
-    "id": "89bd59e3-7521-49ec-8285-b93a5f113e83",
+    "id": "janani-radhakrishnan",
     "data": {
       "first name": "Janani",
       "last name": "Radhakrishnan",
       "birthday": "2011-02-18",
       "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
       "gender": "F",
-      "age": "13 years, 10 months, 11 days"
+      "death date": "Alive"
     },
     "rels": {
       "spouses": [],
-      "father": "f099c433-4b0b-453e-8c22-375dec676485",
-      "mother": "a46bf3ea-a146-4775-b22a-3541b14dc768",
+      "father": "radhakrishnan-nagarajan",
+      "mother": "jaishree-janardhanan",
       "children": []
     }
   },
   {
-    "id": "5ee2ed22-9ff6-45c9-ba43-3f0ee8de60aa",
+    "id": "jay-janardhan",
     "data": {
       "first name": "Jay",
       "last name": "Janardhan",
       "birthday": "1974-09-26",
       "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
       "gender": "M",
-      "age": "50 years, 3 months, 3 days"
+      "death date": "Alive"
     },
     "rels": {
       "spouses": [
-        "03eee69b-6404-463d-8754-81395836241b"
+        "srilakshmi-kalyanasamy"
       ],
-      "father": "5b8f5538-ce9e-4cf3-af09-d90b6c24484d",
-      "mother": "f1bf57db-3a2d-4865-a9c6-81f3f3b0b568",
+      "father": "radha-janardhan",
+      "mother": "janardhan-janardhanan",
       "children": [
-        "da0a4e3e-2488-459e-809c-4103eefc58af",
-        "959e81f8-8b2a-45a0-aaa6-fc755a0bfb88"
+        "ragav-janardhan",
+        "sanjay-janardhan"
       ]
     }
   },
   {
-    "id": "03eee69b-6404-463d-8754-81395836241b",
+    "id": "srilakshmi-kalyanasamy",
     "data": {
       "first name": "Srilakshmi",
       "last name": "Kalyanasamy",
       "birthday": "1976-07-16",
       "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
       "gender": "F",
-      "age": "48 years, 5 months, 13 days"
+      "death date": "Alive"
     },
     "rels": {
       "spouses": [
-        "5ee2ed22-9ff6-45c9-ba43-3f0ee8de60aa"
+        "jay-janardhan"
       ],
       "father": null,
       "mother": null,
       "children": [
-        "da0a4e3e-2488-459e-809c-4103eefc58af",
-        "959e81f8-8b2a-45a0-aaa6-fc755a0bfb88"
+        "ragav-janardhan",
+        "sanjay-janardhan"
       ]
     }
   },
   {
-    "id": "959e81f8-8b2a-45a0-aaa6-fc755a0bfb88",
+    "id": "sanjay-janardhan",
     "data": {
       "first name": "Sanjay",
       "last name": "Janardhan",
       "birthday": "2003-08-05",
       "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
       "gender": "M",
-      "age": "21 years, 4 months, 24 days"
+      "death date": "Alive"
     },
     "rels": {
       "spouses": [],
-      "father": "5ee2ed22-9ff6-45c9-ba43-3f0ee8de60aa",
-      "mother": "03eee69b-6404-463d-8754-81395836241b",
+      "father": "jay-janardhan",
+      "mother": "srilakshmi-kalyanasamy",
       "children": []
     }
   },
   {
-    "id": "b7bd3c07-9e0c-4a99-b556-7222766ff9ee",
+    "id": "arjun-radhakrishnan",
     "data": {
       "first name": "Arjun",
       "last name": "Radhakrishnan",
       "birthday": "2016-07-25",
       "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
       "gender": "M",
-      "age": "8 years, 5 months, 4 days"
+      "death date": "Alive"
     },
     "rels": {
       "spouses": [],
-      "father": "f099c433-4b0b-453e-8c22-375dec676485",
-      "mother": "a46bf3ea-a146-4775-b22a-3541b14dc768",
+      "father": "radhakrishnan-nagarajan",
+      "mother": "jaishree-janardhanan",
       "children": []
     }
   },
   {
-    "id": "5b8f5538-ce9e-4cf3-af09-d90b6c24484d",
+    "id": "radha-janardhan",
     "data": {
       "first name": "Radha",
       "last name": "Janardhan",
       "birthday": "Unknown",
       "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
       "gender": "F",
-      "age": null
+      "death date": "Alive"
     },
     "rels": {
       "spouses": [
-        "f1bf57db-3a2d-4865-a9c6-81f3f3b0b568"
+        "janardhan-janardhanan"
       ],
       "father": null,
       "mother": null,
       "children": [
-        "5ee2ed22-9ff6-45c9-ba43-3f0ee8de60aa",
-        "a46bf3ea-a146-4775-b22a-3541b14dc768"
+        "jay-janardhan",
+        "jaishree-janardhanan"
       ]
     }
   },
   {
-    "id": "f1bf57db-3a2d-4865-a9c6-81f3f3b0b568",
+    "id": "janardhan-janardhanan",
     "data": {
       "first name": "Janardhan",
       "last name": "Janardhanan",
       "birthday": "Unknown",
       "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
       "gender": "M",
-      "age": null
+      "death date": "Alive"
     },
     "rels": {
       "spouses": [
-        "5b8f5538-ce9e-4cf3-af09-d90b6c24484d"
+        "radha-janardhan"
       ],
       "father": null,
       "mother": null,
       "children": [
-        "5ee2ed22-9ff6-45c9-ba43-3f0ee8de60aa",
-        "a46bf3ea-a146-4775-b22a-3541b14dc768"
+        "jay-janardhan",
+        "jaishree-janardhanan"
       ]
     }
   },
   {
-    "id": "a46bf3ea-a146-4775-b22a-3541b14dc768",
+    "id": "jaishree-janardhanan",
     "data": {
       "first name": "Jaishree",
       "last name": "Janardhanan",
       "birthday": "1981-05-24",
       "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
       "gender": "F",
-      "age": "43 years, 7 months, 5 days"
+      "death date": "Alive"
     },
     "rels": {
       "spouses": [
-        "f099c433-4b0b-453e-8c22-375dec676485"
+        "radhakrishnan-nagarajan"
       ],
-      "father": "5b8f5538-ce9e-4cf3-af09-d90b6c24484d",
-      "mother": "f1bf57db-3a2d-4865-a9c6-81f3f3b0b568",
+      "father": "radha-janardhan",
+      "mother": "janardhan-janardhanan",
       "children": [
-        "89bd59e3-7521-49ec-8285-b93a5f113e83",
-        "b7bd3c07-9e0c-4a99-b556-7222766ff9ee"
+        "janani-radhakrishnan",
+        "arjun-radhakrishnan"
       ]
     }
   },
   {
-    "id": "f099c433-4b0b-453e-8c22-375dec676485",
+    "id": "radhakrishnan-nagarajan",
     "data": {
       "first name": "Radhakrishnan",
       "last name": "Nagarajan",
       "birthday": "Unknown",
       "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
       "gender": "M",
-      "age": null
+      "death date": "Alive"
     },
     "rels": {
       "spouses": [
-        "a46bf3ea-a146-4775-b22a-3541b14dc768"
+        "jaishree-janardhanan"
       ],
       "father": null,
       "mother": null,
       "children": [
-        "89bd59e3-7521-49ec-8285-b93a5f113e83",
-        "b7bd3c07-9e0c-4a99-b556-7222766ff9ee"
+        "janani-radhakrishnan",
+        "arjun-radhakrishnan"
       ]
     }
   }

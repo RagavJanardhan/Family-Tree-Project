@@ -1,7 +1,5 @@
-import uuid
 import json
 from datetime import date
-from dateutil.relativedelta import relativedelta
 
 # A node class created to store various attributes for each node (person) in the family tree
 class Person:
@@ -11,8 +9,7 @@ class Person:
         self.deathDate = self.parse_date(deathDate) if deathDate and deathDate != "NULL" else None
         self.gender = gender
         self.relationships = {"parents": [], "children": [], "spouse": None, "siblings": []}
-        self.age = self.calculate_age()  # Automatically calculate age
-        self.id = str(uuid.uuid4())  # Generate a unique ID for each person
+        self.id = self.generate_id()  # Generate ID based on name
 
     @staticmethod
     def parse_date(date_str):
@@ -21,16 +18,9 @@ class Person:
         year, month, day = map(int, date_str.split("-"))
         return date(year, month, day)
 
-    def calculate_age(self):
-        if self.birthDate:
-            end_date = self.deathDate if self.deathDate else date.today()
-            age = relativedelta(end_date, self.birthDate)
-            return {
-                "years": age.years,
-                "months": age.months,
-                "days": age.days
-            }
-        return None
+    def generate_id(self):
+        # Replace spaces in the name with hyphens
+        return self.name.replace(" ", "-").lower()
 
     def add_parent(self, parent):
         if parent not in self.relationships["parents"]:
@@ -45,7 +35,6 @@ class Person:
             sibling.relationships["siblings"].append(self)
 
     def to_json(self):
-        age = self.age
         return {
             "id": self.id,
             "data": {
@@ -54,7 +43,7 @@ class Person:
                 "birthday": self.birthDate.strftime("%Y-%m-%d") if self.birthDate else "Unknown",  
                 "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",  
                 "gender": self.gender if self.gender else ("M" if self.name[-1] != 'a' else "F"),  
-                "age": f"{age['years']} years, {age['months']} months, {age['days']} days" if age else None  
+                "death date": self.deathDate.strftime("%Y-%m-%d") if self.deathDate else "Alive"  
             },
             "rels": {
                 "spouses": [self.relationships["spouse"].id] if self.relationships["spouse"] else [],
@@ -109,13 +98,11 @@ def parse_family_tree(file_path):
         idx += 7
 
     for person in family_tree.members:
-        # Resolve parents and ensure no duplicates
         for parent_name in getattr(person, "temp_parents", []):
             parent = people.get(parent_name)
             if parent:
                 person.add_parent(parent)
 
-        # Resolve spouse
         spouse_name = getattr(person, "temp_spouse", None)
         if spouse_name:
             spouse = people.get(spouse_name)
@@ -123,7 +110,6 @@ def parse_family_tree(file_path):
                 person.relationships["spouse"] = spouse
                 spouse.relationships["spouse"] = person
 
-        # Resolve children and ensure no duplicates
         for child_name in getattr(person, "temp_children", []):
             child = people.get(child_name)
             if child:
@@ -132,7 +118,6 @@ def parse_family_tree(file_path):
                 if person not in child.relationships["parents"]:
                     child.relationships["parents"].append(person)
 
-        # Clean up temporary attributes
         del person.temp_parents
         del person.temp_spouse
         del person.temp_children
