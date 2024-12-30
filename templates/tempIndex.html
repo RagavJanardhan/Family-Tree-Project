@@ -3,106 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore and visualize your family tree. Discover connections, relationships, and important life events.">
   <title>Family Tree</title>
+  <!-- Favicon -->
+  <link rel="icon" href="./static/images/favicon.png">  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <!-- Family Chart Library -->
   <script src="https://unpkg.com/d3@6"></script>
   <script type="module" src="https://unpkg.com/family-chart@0.2.1"></script>
   <link rel="stylesheet" href="https://unpkg.com/family-chart@0.2.1/dist/styles/family-chart.css">
 </head>
-<body>
-  <div id="FamilyChart" class="f3" 
-       style="width:100%; height:900px; margin:auto; background-color:rgb(33,33,33); color:#fff;">
-  </div>
+<body style="font-family: 'Roboto', sans-serif;">
+  <!-- Header Section -->
+  <header>
+    <h1>Welcome to the Family Tree</h1>
+    <!-- Display favicon image on the webpage -->
+    <p>
+		  <img src="../static/images/favicon.ico" alt="Favicon" width="40" height="40" />
+    </p>
+    <p>Explore the history, connections, and stories of our family members.</p>
+  </header>
 
-  <script type="module">
-    fetch('../family_tree.json')
-      .then(res => res.json())
-      .then(data => create(data))
-      .catch(err => console.error(err));
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="#family-tree">Family Tree</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
 
-    function calculateAge(birthday, deathDate) {
-      if (!birthday || birthday.toLowerCase() === 'unknown') {
-        return null;
-      }
+  <!-- Family Tree Section -->
+  <section id="family-tree">
+    <div id="FamilyChart" class="f3" 
+         style="width:100%; height:900px; margin:auto; background-color:rgb(33,33,33); color:#fff;">
+    </div>
+  </section>
 
-      const birthDate = new Date(birthday);
-      const endDate = deathDate && deathDate.toLowerCase() !== 'alive' ? new Date(deathDate) : new Date();
+  <!-- About Section -->
+  <section id="about">
+    <h2>About the Family Tree</h2>
+    <p>This family tree represents the connections, relationships, and history of the members of the Janardhan family. It is a way to celebrate and trace our roots.</p>
+  </section>
 
-      let age = endDate.getFullYear() - birthDate.getFullYear();
-      const monthDiff = endDate.getMonth() - birthDate.getMonth();
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 Janardhan Family Tree. All rights reserved.</p>
+  </footer>
 
-      if (monthDiff < 0 || (monthDiff === 0 && endDate.getDate() < birthDate.getDate())) {
-        age--;
-      }
-
-      return age;
-    }
-
-    function formatAgeOrAgeAtDeath(birthday, deathDate) {
-      const age = calculateAge(birthday, deathDate);
-
-      if (deathDate && deathDate.toLowerCase() !== 'alive') {
-        return `Age at Death: ${age} years`;
-      } else if (age !== null) {
-        return `Age: ${age} years`;
-      }
-
-      return 'Age Unknown';
-    }
-
-    function formatBirthDeathDates(birthday, deathDate) {
-      if (!birthday || birthday.toLowerCase() === 'unknown') {
-        return 'Birthday Unknown';
-      }
-
-      const formatDate = dateStr => {
-        const date = new Date(dateStr);
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
-        const year = date.getFullYear();
-        return `${month}/${day}/${year}`;
-      };
-
-      if (deathDate && deathDate.toLowerCase() !== 'alive') {
-        return `${formatDate(birthday)} - ${formatDate(deathDate)}`;
-      }
-
-      return `Birthday: ${formatDate(birthday)}`;
-    }
-
-    function create(data) {
-      const container = document.querySelector("#FamilyChart");
-      const store = f3.createStore({
-        data,
-        node_separation: 300,
-        level_separation: 150,
-      });
-      const svg = f3.createSvg(container);
-
-      const Card = f3.elements.Card({
-        store,
-        svg,
-        card_dim: {
-          w: 275,
-          h: 100,
-          text_x: 75,
-          text_y: 15,
-          img_w: 60,
-          img_h: 60,
-          img_x: 5,
-          img_y: 5,
-        },
-        card_display: [
-          d => `${d.data["first name"]} ${d.data["last name"]}`, // Name
-          d => formatAgeOrAgeAtDeath(d.data["birthday"], d.data["death date"]), // Age or Age at Death
-          d => formatBirthDeathDates(d.data["birthday"], d.data["death date"]) // Birth and death dates
-        ],
-        mini_tree: true,
-        link_break: false,
-      });
-
-      store.setOnUpdate(props => f3.view(store.getTree(), svg, Card, props || {}));
-      store.updateTree({ initial: true });
-    }
-  </script>
+  <!-- Scripts -->
+  <script type="module" src="{{ url_for('static', filename='js/familyTree.js') }}"></script>
 </body>
 </html>
