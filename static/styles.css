@@ -9,7 +9,6 @@ body {
 }
 
 h1, h2 {
-    color: #fff;
     margin: 0;
     padding: 0;
 }
@@ -23,6 +22,7 @@ header {
 }
 
 header h1 {
+    color: #fff;
     font-size: 3em;
     margin-bottom: 10px; /* Ensure spacing between h1 and p */
 }
@@ -69,6 +69,7 @@ nav a:hover {
 }
 
 #about h2 {
+    color: #000000;
     font-size: 2em;
     margin-bottom: 10px;
 }
