@@ -1,62 +1,89 @@
-// familyTree.js
+fetch('../family_tree.json')
+  .then(res => res.json())
+  .then(data => create(data))
+  .catch(err => console.error(err));
 
-// Data for the family tree nodes
-var nodes = new vis.DataSet([
-    { id: 1, label: "Jay Janardhan", title: "Born: 1974-09-26", shape: 'box', color: '#FFB6C1' },
-    { id: 2, label: "Srilakshmi Kalyanasamy", title: "Born: 1976-07-16", shape: 'box', color: '#FFB6C1' },
-    { id: 3, label: "Ragav Janardhan", title: "Born: 2005-12-02", shape: 'ellipse', color: '#90EE90' },
-    { id: 4, label: "Sanjay Janardhan", title: "Born: 2003-08-05", shape: 'ellipse', color: '#90EE90' },
-]);
+function calculateAge(birthday, deathDate) {
+  if (!birthday || birthday.toLowerCase() === 'unknown') {
+    return null;
+  }
 
-// Data for the family tree edges (relationships)
-var edges = new vis.DataSet([
-    { from: 1, to: 3, label: "Father", color: '#000000' },
-    { from: 2, to: 3, label: "Mother", color: '#000000' },
-    { from: 1, to: 4, label: "Father", color: '#000000' },
-    { from: 2, to: 4, label: "Mother", color: '#000000' },
-    { from: 3, to: 4, label: "Siblings", color: '#000000' },
-]);
+  const birthDate = new Date(birthday);
+  const endDate = deathDate && deathDate.toLowerCase() !== 'alive' ? new Date(deathDate) : new Date();
 
-// Container for the family tree visualization
-var container = document.getElementById('familyTree');
+  let age = endDate.getFullYear() - birthDate.getFullYear();
+  const monthDiff = endDate.getMonth() - birthDate.getMonth();
 
-// Create the data object for Vis.js
-var data = {
-    nodes: nodes,
-    edges: edges
-};
+  if (monthDiff < 0 || (monthDiff === 0 && endDate.getDate() < birthDate.getDate())) {
+    age--;
+  }
 
-// Options for the network visualization
-var options = {
-    nodes: {
-        font: { size: 16, face: 'Arial' }, // Increase font size
-        shape: 'ellipse',  // Ensure consistent shape for all nodes
-        size: 30, // Set a consistent node size
-        color: {
-            background: '#90EE90',
-            border: '#006400',
-        }
+  return age;
+}
+
+function formatAgeOrAgeAtDeath(birthday, deathDate) {
+  const age = calculateAge(birthday, deathDate);
+
+  if (deathDate && deathDate.toLowerCase() !== 'alive') {
+    return `Age at Death: ${age} years`;
+  } else if (age !== null) {
+    return `Age: ${age} years`;
+  }
+
+  return 'Age Unknown';
+}
+
+function formatBirthDeathDates(birthday, deathDate) {
+  if (!birthday || birthday.toLowerCase() === 'unknown') {
+    return 'Birthday Unknown';
+  }
+
+  const formatDate = dateStr => {
+    const date = new Date(dateStr);
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+  };
+
+  if (deathDate && deathDate.toLowerCase() !== 'alive') {
+    return `${formatDate(birthday)} - ${formatDate(deathDate)}`;
+  }
+
+  return `Birthday: ${formatDate(birthday)}`;
+}
+
+function create(data) {
+  const container = document.querySelector("#FamilyChart");
+  const store = f3.createStore({
+    data,
+    node_separation: 300,
+    level_separation: 150,
+  });
+  const svg = f3.createSvg(container);
+
+  const Card = f3.elements.Card({
+    store,
+    svg,
+    card_dim: {
+      w: 275,
+      h: 100,
+      text_x: 75,
+      text_y: 15,
+      img_w: 60,
+      img_h: 60,
+      img_x: 5,
+      img_y: 5,
     },
-    edges: {
-        arrows: { to: { enabled: true, scaleFactor: 0.5 } }, // Add arrowheads to edges
-        color: '#000000',
-        font: { size: 12 },
-        smooth: { type: 'continuous' }, // Smooth out edges
-    },
-    layout: {
-        hierarchical: {
-            direction: 'UD', // 'UD' means Top to Bottom (Upwards)
-            sortMethod: 'directed', // Maintain directed structure
-            levelSeparation: 100, // Increase separation between levels
-            nodeSpacing: 150, // Increase space between nodes
-            shakeTowards: 'roots', // Ensure siblings stay at the same level
-            blockThreshold: 1, // Ensures only children at the same level are moved horizontally
-        }
-    },
-    physics: {
-        enabled: false,  // Disable physics for a more static layout
-    }
-};
+    card_display: [
+      d => `${d.data["first name"]} ${d.data["last name"]}`, // Name
+      d => formatAgeOrAgeAtDeath(d.data["birthday"], d.data["death date"]), // Age or Age at Death
+      d => formatBirthDeathDates(d.data["birthday"], d.data["death date"]) // Birth and death dates
+    ],
+    mini_tree: true,
+    link_break: false,
+  });
 
-// Initialize the network
-var network = new vis.Network(container, data, options);
+  store.setOnUpdate(props => f3.view(store.getTree(), svg, Card, props || {}));
+  store.updateTree({ initial: true });
+}
