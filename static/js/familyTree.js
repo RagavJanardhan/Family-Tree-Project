@@ -8,7 +8,8 @@ function calculateAge(birthday, deathDate) {
     return null;
   }
 
-  const birthDate = new Date(birthday);
+  // Use Date.UTC to prevent timezone differences
+  const birthDate = new Date(birthday); 
   const endDate = deathDate && deathDate.toLowerCase() !== 'alive' ? new Date(deathDate) : new Date();
 
   let age = endDate.getFullYear() - birthDate.getFullYear();
@@ -40,9 +41,10 @@ function formatBirthDeathDates(birthday, deathDate) {
 
   const formatDate = dateStr => {
     const date = new Date(dateStr);
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    const year = date.getFullYear();
+    // Use UTC methods to ensure no timezone shift occurs
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0'); 
+    const day = date.getUTCDate().toString().padStart(2, '0');
+    const year = date.getUTCFullYear();
     return `${month}/${day}/${year}`;
   };
 
