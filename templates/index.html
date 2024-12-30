@@ -3,17 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore and visualize your family tree. Discover connections, relationships, and important life events.">
   <title>Family Tree</title>
-  <link rel="stylesheet" href="styles.css">
+  <!-- Favicon -->
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <!-- Family Chart Library -->
   <script src="https://unpkg.com/d3@6"></script>
   <script type="module" src="https://unpkg.com/family-chart@0.2.1"></script>
   <link rel="stylesheet" href="https://unpkg.com/family-chart@0.2.1/dist/styles/family-chart.css">
 </head>
-<body>
-  <div id="FamilyChart" class="f3" 
-       style="width:100%; height:900px; margin:auto; background-color:rgb(33,33,33); color:#fff;">
-  </div>
+<body style="font-family: 'Roboto', sans-serif;">
+  <!-- Header Section -->
+  <header>
+    <h1>Welcome to the Family Tree</h1>
+    <p>Explore the history, connections, and stories of our family members.</p>
+  </header>
 
-  <script type="module" src="../static/js/familyTree.js"></script>
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="#family-tree">Family Tree</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Family Tree Section -->
+  <section id="family-tree">
+    <div id="FamilyChart" class="f3" 
+         style="width:100%; height:900px; margin:auto; background-color:rgb(33,33,33); color:#fff;">
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About the Family Tree</h2>
+    <p>This family tree represents the connections, relationships, and history of the members of the Janardhan family. It is a way to celebrate and trace our roots.</p>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 Janardhan Family Tree. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="{{ url_for('static', filename='js/familyTree.js') }}"></script>
 </body>
 </html>
