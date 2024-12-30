@@ -26,12 +26,18 @@ class Person:
 
     def calculate_age(self):
         """
-        Calculates the person's age based on their birthDate and deathDate (if available).
+        Calculates the person's exact age based on their birthDate and deathDate (if available).
         If the person is alive, calculate age using the current date.
+        Returns age in years, months, and days.
         """
         if self.birthDate:
             end_date = self.deathDate if self.deathDate else date.today()
-            return relativedelta(end_date, self.birthDate).years
+            age = relativedelta(end_date, self.birthDate)
+            return {
+                "years": age.years,
+                "months": age.months,
+                "days": age.days
+            }
         return None  # Return None if birthDate is not set
 
     def add_parent(self, parent):
@@ -44,14 +50,16 @@ class Person:
 
     def to_json(self):
         """Returns the JSON representation of the person."""
+        age = self.age
         return {
             "id": self.id,
             "data": {
                 "first name": self.name.split()[0],  # First name
                 "last name": " ".join(self.name.split()[1:]),  # Last name
-                "birthday": self.birthDate.strftime("%Y") if self.birthDate else None,  # Year of birth
+                "birthday": self.birthDate.strftime("%Y-%m-%d") if self.birthDate else "Unknown",  # Full date of birth
                 "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",  # Placeholder avatar
-                "gender": self.gender if self.gender else ("M" if self.name[-1] != 'a' else "F")  # Use provided gender, default based on name
+                "gender": self.gender if self.gender else ("M" if self.name[-1] != 'a' else "F"),  # Use provided gender, default based on name
+                "age": f"{age['years']} years, {age['months']} months, {age['days']} days" if age else None  # Exact age
             },
             "rels": {
                 "spouses": [self.relationships["spouse"].id] if self.relationships["spouse"] else [],

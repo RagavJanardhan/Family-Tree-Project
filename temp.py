@@ -5,10 +5,11 @@ from dateutil.relativedelta import relativedelta
 
 # A node class created to store various attributes for each node (person) in the family tree
 class Person:
-    def __init__(self, name, birthDate, deathDate=None):
+    def __init__(self, name, birthDate, deathDate=None, gender=None):
         self.name = name
         self.birthDate = self.parse_date(birthDate)
-        self.deathDate = self.parse_date(deathDate) if deathDate else None
+        self.deathDate = self.parse_date(deathDate) if deathDate and deathDate != "NULL" else None
+        self.gender = gender
         self.relationships = {"parents": [], "children": [], "spouse": None, "siblings": []}
         self.age = self.calculate_age()  # Automatically calculate age
         self.id = str(uuid.uuid4())  # Generate a unique ID for each person
@@ -16,9 +17,11 @@ class Person:
     @staticmethod
     def parse_date(date_str):
         """
-        Parses a date string in 'YYYY MM DD' format and returns a date object.
+        Parses a date string in 'YYYY-MM-DD' format and returns a date object.
         """
-        year, month, day = map(int, date_str.split(" "))
+        if date_str == "Unknown" or date_str == "NULL":
+            return None
+        year, month, day = map(int, date_str.split("-"))
         return date(year, month, day)
 
     def calculate_age(self):
@@ -46,9 +49,9 @@ class Person:
             "data": {
                 "first name": self.name.split()[0],  # First name
                 "last name": " ".join(self.name.split()[1:]),  # Last name
-                "birthday": self.birthDate.strftime("%Y"),  # Year of birth
+                "birthday": self.birthDate.strftime("%Y") if self.birthDate else None,  # Year of birth
                 "avatar": "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",  # Placeholder avatar
-                "gender": "M" if self.name[-1] != 'a' else "F"  # Assuming male if name doesn't end in 'a', else female
+                "gender": self.gender if self.gender else ("M" if self.name[-1] != 'a' else "F")  # Use provided gender, default based on name
             },
             "rels": {
                 "spouses": [self.relationships["spouse"].id] if self.relationships["spouse"] else [],
@@ -86,30 +89,51 @@ def parse_family_tree(file_path):
         name = lines[idx].split(": ")[1].strip()
         birth_date = lines[idx + 1].split(": ")[1].strip()
         death_date = lines[idx + 2].split(": ")[1].strip()
-        parents = lines[idx + 3].split(": ")[1].strip().split(", ")
-        num_children = int(lines[idx + 4].split(": ")[1].strip())
+        gender = lines[idx + 3].split(": ")[1].strip()  # Read gender
+        parents = lines[idx + 4].split(": ")[1].strip().split(", ")
+        spouse = lines[idx + 5].split(": ")[1].strip()
+        children = lines[idx + 6].split(": ")[1].strip().split(", ") if lines[idx + 6].split(": ")[1].strip() != "None" else []
 
         # Create a Person object
-        death_date = None if death_date == "ALIVE" else death_date
-        person = Person(name, birth_date, death_date)
+        death_date = None if death_date == "NULL" else death_date
+        person = Person(name, birth_date, death_date, gender)
         
         # Temporarily store relationships (resolve them later if needed)
         person.temp_parents = parents  # Temporary attribute for unresolved parents
-        person.num_children = num_children
+        person.temp_spouse = spouse if spouse != "NULL" else None  # Temporary attribute for spouse
+        person.temp_children = children  # Temporary attribute for unresolved children
 
         # Add to the family tree and people dictionary
         family_tree.add_member(person)
         people[name] = person  # Add to people dictionary by name
         
-        idx += 5  # Move to the next person's data
+        idx += 7  # Move to the next person's data
 
     # Resolve relationships (if needed)
     for person in family_tree.members:
+        # Resolve parents
         for parent_name in getattr(person, "temp_parents", []):
             parent = people.get(parent_name)
             if parent:
                 person.add_parent(parent)
-        del person.temp_parents  # Remove temporary attribute
+        # Resolve spouse
+        spouse_name = getattr(person, "temp_spouse", None)
+        if spouse_name:
+            spouse = people.get(spouse_name)
+            if spouse:
+                person.relationships["spouse"] = spouse
+                spouse.relationships["spouse"] = person
+        # Resolve children
+        for child_name in getattr(person, "temp_children", []):
+            child = people.get(child_name)
+            if child:
+                person.relationships["children"].append(child)
+                child.relationships["parents"].append(person)
+
+        # Clean up temporary attributes
+        del person.temp_parents
+        del person.temp_spouse
+        del person.temp_children
 
     return family_tree
 
