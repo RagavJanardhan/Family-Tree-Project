@@ -1,7 +1,18 @@
+// Show the spinner
+const spinner = document.getElementById('loading-spinner');
+spinner.style.display = 'block';
+
+// Fetch the family tree data and create the visualization
 fetch('../family_tree.json')
   .then(res => res.json())
-  .then(data => create(data))
-  .catch(err => console.error(err));
+  .then(data => {
+    create(data);
+    spinner.style.display = 'none'; // Hide the spinner once data is loaded
+  })
+  .catch(err => {
+    console.error(err);
+    spinner.style.display = 'none'; // Hide the spinner in case of an error
+  });
 
 function calculateAge(birthday, deathDate) {
   if (!birthday || birthday.toLowerCase() === 'unknown') {

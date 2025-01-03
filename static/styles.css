@@ -1,75 +1,92 @@
-/* styles.css */
-
 /* General Styles */
 body {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #E0E0E0; /* Light gray text for readability */
 }
 
+/* Header Styles */
 header {
     text-align: center;
     padding: 20px 0;
-    background-color: #333;
-    color: #fff;
+    background: linear-gradient(135deg, #1E1E1E, #333); /* Subtle gradient for header */
+    color: #ffffff; /* Gold for contrast */
     margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+    animation: fadeIn 1.5s ease-in-out;
 }
 
-header h1 {
-    color: #fff;
-    font-size: 3em;
-    margin-bottom: 10px; /* Ensure spacing between h1 and p */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
-header p {
-    font-size: 1.2em;
-    margin: 0; /* Reset default margins */
-}
-
-/* Navigation */
+/* Navigation Bar */
 nav {
-    background-color: #444;
-    padding: 10px;
-    text-align: center;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav li {
-    display: inline;
-    margin: 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Aligns buttons at the top of the container */
+    gap: 15px; /* Space between buttons */
+    padding: 10px 10px; /* Adjust padding if necessary */
+    background-color: transparent;
 }
 
 nav a {
-    color: #fff;
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
     text-decoration: none;
-    font-size: 1.2em;
+    color: #E0E0E0; /* Light text */
+    font-weight: bold;
+    background-color: #333; /* Dark button background */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+    margin-top: -20px;  /* Fine-tune the button position */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    background-color: #c2c2c1; /* Gold on hover */
+    color: #121212; /* Dark text for contrast */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+nav a:active {
+    transform: translateY(1px); /* Slight press effect */
+}
+
+/* Family Tree Section */
+#FamilyChart {
+    width: 100%;
+    height: 900px;
+    margin: auto;
+    background-color: #1E1E1E; /* Darker background */
+    color: #E0E0E0; /* Light text */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    padding: 10px;
 }
 
 /* About Section */
 #about {
+    display: flex;
+    gap: 20px;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #1E1E1E; /* Dark background */
+    border-radius: 8px;
+    align-items: center;
     margin: 20px;
+    color: #E0E0E0;
+}
+
+#about img {
+    width: 150px;
     border-radius: 8px;
 }
 
-#about h2 {
-    color: #000000;
-    font-size: 2em;
-    margin-bottom: 10px;
-}
-
 #about p {
+    flex: 1;
     font-size: 1.2em;
 }
 
@@ -77,14 +94,45 @@ nav a:hover {
 footer {
     text-align: center;
     padding: 10px;
-    background-color: #333;
-    color: #fff;
+    background-color: #1E1E1E; /* Dark footer background */
+    color: #E0E0E0;
     margin-top: 30px;
+    position: relative;
 }
 
-/* Media Query for Mobile Devices */
-@media (max-width: 600px) {
-    #FamilyChart {
-        height: 600px;
-    }
+footer a {
+    color: #FFD700; /* Gold links */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer .back-to-top {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: #FFD700;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9em;
+    color: #333;
+}
+
+/* Loading Spinner */
+#loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #121212; /* Dark spinner text */
+    background-color: #FFD700; /* Gold spinner background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
 }
